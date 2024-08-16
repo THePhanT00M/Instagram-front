@@ -5,6 +5,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { logUserIn } from "../apollo";
 import AuthLayout from "./components/auth/AuthLayout";
@@ -18,11 +19,15 @@ import PageTitle from "./components/PageTitle";
 import routes from "../routes";
 
 const FacebookLogin = styled.div`
-  color: #385285;
-  span {
-    margin-left: 10px;
-    font-weight: 600;
-  }
+    color: #385285;
+    span {
+        margin-left: 10px;
+        font-weight: 600;
+    }
+`;
+
+const Notification = styled.div`
+    color: #2ecc71;
 `;
 
 const LOGIN_MUTATION = gql`
@@ -36,6 +41,7 @@ const LOGIN_MUTATION = gql`
 `;
 
 function Login() {
+    const location = useLocation();
     const {
         register,
         handleSubmit,
@@ -46,13 +52,19 @@ function Login() {
         clearErrors,
     } = useForm({
         mode: "onChange",
+        defaultValues: {
+            username: location?.state?.username || "",
+            password: location?.state?.password || "",
+        },
     });
+
     const onCompleted = (data) => {
         const {
             login: { ok, error, token },
         } = data;
         if (!ok) {
             return setError("result", {
+                type: "manual",
                 message: error,
             });
         }
@@ -60,21 +72,22 @@ function Login() {
             logUserIn(token);
         }
     };
+
     const [login, { loading }] = useMutation(LOGIN_MUTATION, {
         onCompleted,
     });
-    const onSubmitValid = (data) => {
-        if (loading) {
-            return;
-        }
+
+    const onSubmitValid = () => {
+        if (loading) return;
+
         const { username, password } = getValues();
         login({
             variables: { username, password },
         });
     };
-    const clearLoginError = () => {
-        clearErrors("result");
-    };
+
+    const clearLoginError = () => clearErrors("result");
+
     return (
         <AuthLayout>
             <PageTitle title="Login" />
@@ -82,6 +95,9 @@ function Login() {
                 <div>
                     <FontAwesomeIcon icon={faInstagram} size="3x" />
                 </div>
+                {location?.state?.message && (
+                    <Notification>{location.state.message}</Notification>
+                )}
                 <form onSubmit={handleSubmit(onSubmitValid)}>
                     <Input
                         {...register("username", {
@@ -92,7 +108,6 @@ function Login() {
                             },
                         })}
                         onChange={clearLoginError}
-                        name="username"
                         type="text"
                         placeholder="Username"
                         haserror={Boolean(errors?.username?.message)}
@@ -103,7 +118,6 @@ function Login() {
                             required: "Password is required.",
                         })}
                         onChange={clearLoginError}
-                        name="password"
                         type="password"
                         placeholder="Password"
                         haserror={Boolean(errors?.password?.message)}
@@ -130,4 +144,5 @@ function Login() {
         </AuthLayout>
     );
 }
+
 export default Login;
