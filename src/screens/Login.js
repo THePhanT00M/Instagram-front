@@ -8,14 +8,14 @@ import {useForm} from "react-hook-form";
 import {useLocation} from "react-router-dom";
 import styled from "styled-components";
 import {logUserIn} from "../apollo";
-import AuthLayout from "./components/auth/AuthLayout";
-import BottomBox from "./components/auth/BottomBox";
-import Button from "./components/auth/Button";
-import FormBox from "./components/auth/FormBox";
-import FormError from "./components/auth/FormError";
-import Input from "./components/auth/Input";
-import Separator from "./components/auth/Separator";
-import PageTitle from "./components/PageTitle";
+import AuthLayout from "../components/auth/AuthLayout";
+import BottomBox from "../components/auth/BottomBox";
+import Button from "../components/auth/Button";
+import FormBox from "../components/auth/FormBox";
+import FormError from "../components/auth/FormError";
+import Input from "../components/auth/Input";
+import Separator from "../components/auth/Separator";
+import PageTitle from "../components/PageTitle";
 import routes from "../routes";
 
 const Logo = styled.div`

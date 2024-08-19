@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"; // useNavigate로 변경
 import styled from "styled-components";
-import AuthLayout from "./components/auth/AuthLayout";
-import BottomBox from "./components/auth/BottomBox";
-import Button from "./components/auth/Button";
-import FormBox from "./components/auth/FormBox";
-import Input from "./components/auth/Input";
-import PageTitle from "./components/PageTitle";
-import { FatLink } from "./components/shared";
+import AuthLayout from "../components/auth/AuthLayout";
+import BottomBox from "../components/auth/BottomBox";
+import Button from "../components/auth/Button";
+import FormBox from "../components/auth/FormBox";
+import Input from "../components/auth/Input";
+import PageTitle from "../components/PageTitle";
+import { FatLink } from "../components/shared";
 import routes from "../routes";
 
 const Logo = styled.div`
