@@ -30,6 +30,10 @@ const Subtitle = styled(FatLink)`
     margin: 0 40px 10px;
 `;
 
+const FormBoxLayout = styled.div`
+    margin: 0 40px 6px;
+`
+
 const CREATE_ACCOUNT_MUTATION = gql`
     mutation createAccount(
         $firstName: String!
@@ -103,48 +107,48 @@ function SignUp() { // 컴포넌트 이름 수정
                     </Subtitle>
                 </HeaderContainer>
                 <form onSubmit={handleSubmit(onSubmitValid)}>
-                    <div>
+                    <FormBoxLayout>
                         <Input
                             {...register("firstName", { required: "First Name is required." })}
                             type="text"
                             placeholder="First Name"
                         />
-                    </div>
-                    <div>
+                    </FormBoxLayout>
+                    <FormBoxLayout>
                         <Input
                             {...register("lastName")}
                             type="text"
                             placeholder="Last Name"
                         />
-                    </div>
-                    <div>
+                    </FormBoxLayout>
+                    <FormBoxLayout>
                         <Input
                             {...register("email", { required: "Email is required." })}
                             type="text"
                             placeholder="Email"
                         />
-                    </div>
-                    <div>
+                    </FormBoxLayout>
+                    <FormBoxLayout>
                         <Input
                             {...register("username", { required: "Username is required." })}
                             type="text"
                             placeholder="Username"
                         />
-                    </div>
-                    <div>
+                    </FormBoxLayout>
+                    <FormBoxLayout>
                         <Input
                             {...register("password", { required: "Password is required." })}
                             type="password"
                             placeholder="Password"
                         />
-                    </div>
-                    <div>
+                    </FormBoxLayout>
+                    <FormBoxLayout>
                         <Button
                             type="submit"
                             value={loading ? "Loading..." : "Sign up"}
                             disabled={!formState.isValid || loading}
                         />
-                    </div>
+                    </FormBoxLayout>
                 </form>
             </FormBox>
             <BottomBox cta="Have an account?" linkText="Log in" link={routes.home} />
