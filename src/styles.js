@@ -14,11 +14,13 @@ export const darkTheme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
     ${reset}
-    input {
-        all:unset;
-    }
     * {
+        font-family: "Noto Sans KR", sans-serif!important;
+        font-optical-sizing: auto;
+        font-style: normal;
         box-sizing:border-box;
     }
     body {
@@ -26,6 +28,9 @@ export const GlobalStyles = createGlobalStyle`
         font-size:14px;
         font-family:'Open Sans', sans-serif;
         color:${(props) => props.theme.fontColor};
+    }
+    input {
+        all:unset;
     }
     a {
         text-decoration: none;

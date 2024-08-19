@@ -13,6 +13,11 @@ import PageTitle from "./components/PageTitle";
 import { FatLink } from "./components/shared";
 import routes from "../routes";
 
+const Logo = styled.div`
+    margin-top: 36px;
+    margin-bottom: 10px;
+`
+
 const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -22,7 +27,7 @@ const HeaderContainer = styled.div`
 const Subtitle = styled(FatLink)`
     font-size: 16px;
     text-align: center;
-    margin-top: 10px;
+    margin: 0 40px 10px;
 `;
 
 const CREATE_ACCOUNT_MUTATION = gql`
@@ -90,42 +95,56 @@ function SignUp() { // 컴포넌트 이름 수정
             <PageTitle title="Sign up" />
             <FormBox>
                 <HeaderContainer>
-                    <FontAwesomeIcon icon={faInstagram} size="3x" />
+                    <Logo>
+                        <FontAwesomeIcon icon={faInstagram} size="3x" />
+                    </Logo>
                     <Subtitle>
                         Sign up to see photos and videos from your friends.
                     </Subtitle>
                 </HeaderContainer>
                 <form onSubmit={handleSubmit(onSubmitValid)}>
-                    <Input
-                        {...register("firstName", { required: "First Name is required." })}
-                        type="text"
-                        placeholder="First Name"
-                    />
-                    <Input
-                        {...register("lastName")}
-                        type="text"
-                        placeholder="Last Name"
-                    />
-                    <Input
-                        {...register("email", { required: "Email is required." })}
-                        type="text"
-                        placeholder="Email"
-                    />
-                    <Input
-                        {...register("username", { required: "Username is required." })}
-                        type="text"
-                        placeholder="Username"
-                    />
-                    <Input
-                        {...register("password", { required: "Password is required." })}
-                        type="password"
-                        placeholder="Password"
-                    />
-                    <Button
-                        type="submit"
-                        value={loading ? "Loading..." : "Sign up"}
-                        disabled={!formState.isValid || loading}
-                    />
+                    <div>
+                        <Input
+                            {...register("firstName", { required: "First Name is required." })}
+                            type="text"
+                            placeholder="First Name"
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            {...register("lastName")}
+                            type="text"
+                            placeholder="Last Name"
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            {...register("email", { required: "Email is required." })}
+                            type="text"
+                            placeholder="Email"
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            {...register("username", { required: "Username is required." })}
+                            type="text"
+                            placeholder="Username"
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            {...register("password", { required: "Password is required." })}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </div>
+                    <div>
+                        <Button
+                            type="submit"
+                            value={loading ? "Loading..." : "Sign up"}
+                            disabled={!formState.isValid || loading}
+                        />
+                    </div>
                 </form>
             </FormBox>
             <BottomBox cta="Have an account?" linkText="Log in" link={routes.home} />

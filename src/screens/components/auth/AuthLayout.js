@@ -19,7 +19,8 @@ const Wrapper = styled.div`
 `;
 
 const Footer = styled.footer`
-  margin-top: 20px;
+    margin-top: 20px;
+    text-align: center;
 `;
 
 const DarkModeBtn = styled.span`
@@ -30,12 +31,15 @@ function AuthLayout({ children }) {
     const darkMode = useReactiveVar(darkModeVar);
     return (
         <Container>
-            <Wrapper>{children}</Wrapper>
-            <Footer>
-                <DarkModeBtn onClick={darkMode ? disableDarkMode : enableDarkMode}>
-                    <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-                </DarkModeBtn>
-            </Footer>
+            <Wrapper>
+                {children}
+                <Footer>
+                    <DarkModeBtn onClick={darkMode ? disableDarkMode : enableDarkMode}>
+                        <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+                    </DarkModeBtn>
+                </Footer>
+            </Wrapper>
+
         </Container>
     );
 }
